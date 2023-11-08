@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Definir array asociativo para los feriados
+# Definir array que asocie los días feriados seguro este array hay que actualizarlo cada año
 declare -A feriados
 feriados=(
   ["0101"]="Año Nuevo"
