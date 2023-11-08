@@ -58,7 +58,7 @@ esFeriado() {
   local fecha_larga=$1
   local fecha_corta="${fecha_larga:0:4}"
   if [[ ${feriados[$fecha_corta]+_} ]]; then
-    echo "La fecha $fecha_larga es un feriado: ${feriados[$fecha]}"
+    echo "La fecha $fecha_larga es un feriado: ${feriados[$fecha_corta]}"
     exit 0
   else
     echo "La fecha $fecha no es un feriado."
