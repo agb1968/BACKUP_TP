@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Definir array que asocie los días feriados seguro este array hay que actualizarlo cada año
+# Definir array que asocie los días feriados, seguro este array hay que actualizarlo cada año
 declare -A feriados
 feriados=(
   ["0101"]="Año Nuevo"
@@ -37,16 +37,23 @@ esFinDeSemana() {
   local fecha=$1
   local diaSemana
 
-  # Asumiendo GNU date
+  # Trato de convertir el día de la semana a número para identificar los sábados al número 6 y domingos al número 7
   diaSemana=$(date -d "${fecha:4:4}-${fecha:2:2}-${fecha:0:2}" +%u)
-  
+
+  # Si coincide puedo identificar cuando cae en un fin de semana 
   if [[ $diaSemana -eq 6 || $diaSemana -eq 7 ]]; then
     echo "La fecha $fecha cae en fin de semana."
     exit 0
   fi
 }
 
-# Función para verificar si es feriado
+# Función para verificar si es feriado, esto lo hago de la siguiente manera
+# tomo la fecha larga en formao DDMMAAAA y le anulo el año creando la variable 
+# Fecha_corta
+
+# Con el if me aseguro si la fecha_corta está dentro del array de feriados que definímos arriba
+# en ese caso confirmo que sea un feriado.
+
 esFeriado() {
   local fecha_larga=$1
   local fecha_corta="${fecha_larga:0:4}"
